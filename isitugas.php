@@ -6,8 +6,8 @@ if (!isset($_SESSION["login"])) {
 }
 include 'koneksi.php';
 
-$id_dosen = $_GET['id_dosen'];
-$query = "SELECT * FROM tugas WHERE id_dosen = '$id_dosen'";
+$id_pengumpulan = $_GET['id_pengumpulan'];
+$query = "SELECT * FROM pengumpulan WHERE id_pengumpulan = '$id_pengumpulan'";
 $result = mysqli_query($koneksi, $query);
 ?>
 
@@ -106,51 +106,38 @@ $result = mysqli_query($koneksi, $query);
 
                 <?php
                 $no = 1;
+                include 'koneksi.php';
+                $query2 = "SELECT * FROM tugas";
+                $result2 = mysqli_query($koneksi, $query2);
 
-                if ($result && mysqli_num_rows($result) > 0) {
-                    while ($data = mysqli_fetch_assoc($result)) {
-                        $id_tugas = $data['id_tugas'];
-                        $query_pengumpulan = "SELECT * FROM pengumpulan WHERE id_tugas = '$id_tugas'";
-                        $result_pengumpulan = mysqli_query($koneksi, $query_pengumpulan);
-                        $pengumpulan_data = mysqli_fetch_assoc($result_pengumpulan);
                 ?>
-                        <div class="col-lg-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Tugas <?php echo $no++ ?>: <?php echo $data['judul']; ?></h5>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">Deskripsi: <?php echo $data['deskripsi']; ?></p>
-                                    <p class="card-text">Deadline: <?php echo $data['deadline']; ?></p>
-                                    <?php if ($pengumpulan_data) { ?>
-                                        <p style="color: green;">Sudah mengumpulkan pada: <?php echo $pengumpulan_data['waktu']; ?></p>
-                                        <p>File yang diunggah: <?php echo $pengumpulan_data['file']; ?></p>
-                                    <?php } else { ?>
-                                        <p style="color: red;">Belum Mengumpulkan</p>
-                                    <?php } ?>
-                                    <p class="card-text">Nilai: <?php echo $data['nilai']; ?></p>
+                <?php while ($data = mysqli_fetch_assoc($result)) {
+                    $data2 = mysqli_fetch_assoc($result2)
+                ?>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Tugas <?php echo $no++ ?>: <?php echo $data2['judul']; ?></h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Deskripsi: <?php echo $data2['deskripsi']; ?></p>
+                                <p class="card-text">Deadline: <?php echo $data2['deadline']; ?></p>
+                                <p class="card-text">Nilai: <?php echo $data['nilai']; ?></p>
 
-                                    <form method="post" action="submittugasmahasiswa.php" enctype="multipart/form-data">
-                                        <input type="hidden" name="id_tugas" value="<?php echo $data['id_tugas']; ?>">
-                                        <?php if ($pengumpulan_data) { ?>
-                                            <input type="file" name="file" class="form-control" id="inputGroupFile01" required="required">
-                                            <br>
-                                            <button type="submit" name="submit" value="edit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Data</button>
-                                        <?php } else { ?>
-                                            <input type="file" name="file" class="form-control" id="inputGroupFile01" required="required">
-                                            <br>
-                                            <button type="submit" name="submit" value="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Unggah</button>
-                                        <?php } ?>
-                                    </form>
-                                </div>
+                                <form method="post" action="submittugasmahasiswa.php" enctype="multipart/form-data">
+                                    <input type="hidden" name="id_pengumpulan" value="<?php echo $data['id_pengumpulan']; ?>">
+                                    <?php if (!empty($data['file'])) { ?>
+                                        <p>Edit Tugas:</p>
+                                        <input type="file" name="file" class="form-control" value="<?php echo $data['file']; ?>" id="inputGroupFile01" required="required">
+                                        <button type="submit" name="submit" value="edit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Data</button>
+                                    <?php } else { ?>
+                                        <p>Insert Data:</p>
+                                        <input type="file" name="file" class="form-control" value="<?php echo $data['file']; ?>" id="inputGroupFile01" required="required">
+                                        <button type="submit" name="submit" value="simpan" class="btn btn-primary"><i class="fas fa-upload"></i> Unggah</button>
+                                    <?php } ?>
+                                </form>
                             </div>
                         </div>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <div class="col-md-12">
-                        <p>Tidak ada data tugas yang tersedia</p>
                     </div>
                 <?php
                 }

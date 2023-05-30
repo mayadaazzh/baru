@@ -8,6 +8,12 @@ if (!isset($_SESSION["login"])) {
 
 include 'koneksi.php';
 
+
+$id_mahasiswa = $_GET['id_mahasiswa'];
+$query2 = "SELECT id_pengumpulan FROM pengumpulan WHERE id_mahasiswa='$id_mahasiswa'";
+$result2 = mysqli_query($koneksi, $query2);
+
+
 $query = "SELECT * FROM dosen";
 $result = mysqli_query($koneksi, $query);
 ?>
@@ -104,7 +110,8 @@ $result = mysqli_query($koneksi, $query);
     <div class="content">
         <div class="container">
             <div class="row">
-                <?php while ($data = mysqli_fetch_assoc($result)) { ?>
+                <?php while ($data = mysqli_fetch_assoc($result)) {
+                    $data2 = mysqli_fetch_assoc($result2) ?>
                     <div class="col-md-6">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -112,7 +119,7 @@ $result = mysqli_query($koneksi, $query);
                             </div>
                             <div class="card-body">
                                 <p>Dosen Pengampu: <?php echo $data['nama']; ?></p>
-                                <a href="isitugas.php?id_dosen=<?php echo $data['id_dosen']; ?>" class="btn btn-dark"><i class="fas fa-eye"></i> Lihat Tugas</a>
+                                <a href="isitugas.php?id_pengumpulan=<?php echo $data2['id_pengumpulan']; ?>" class="btn btn-dark"><i class="fas fa-eye"></i> Lihat Tugas</a>
                             </div>
                         </div>
                     </div>

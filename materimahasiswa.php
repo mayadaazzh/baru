@@ -10,6 +10,11 @@ include 'koneksi.php';
 
 $query = "SELECT * FROM dosen";
 $result = mysqli_query($koneksi, $query);
+
+$query2 = "SELECT * FROM pengumpulan";
+$result2 = mysqli_query($koneksi, $query2);
+$data2 = mysqli_fetch_assoc($result2)
+
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +101,7 @@ $result = mysqli_query($koneksi, $query);
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="tugasmahasiswa.php"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
+                <a class="nav-link active text-white" href="tugasmahasiswa.php?id_mahasiswa=<?php echo $data2['id_mahasiswa']; ?>"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
             </li>
         </ul>
     </div>

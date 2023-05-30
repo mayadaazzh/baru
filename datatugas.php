@@ -12,13 +12,16 @@ $query = "SELECT * FROM tugas WHERE id_tugas = '$id_tugas'";
 $result = mysqli_query($koneksi, $query);
 $roww = mysqli_fetch_assoc($result);
 
-$id_dosen = $_SESSION['id_dosen'];
+
 
 $query_sudah = "SELECT m.id_mahasiswa, m.Nama, p.file, n.nilai, p.id_pengumpulan
                 FROM mahasiswa m
                 LEFT JOIN pengumpulan p ON m.id_mahasiswa = p.id_mahasiswa AND p.id_tugas = '$id_tugas'
                 LEFT JOIN nilai n ON p.id_pengumpulan = n.id_pengumpulan
                 WHERE p.id_tugas = '$id_tugas'";
+
+$query_nilai = "SELECT * FROM pengumpulan";
+$result_nilai = mysqli_query($koneksi, $query_nilai);
 
 $result_sudah = mysqli_query($koneksi, $query_sudah);
 
@@ -66,10 +69,12 @@ include('./include/header.php');
                 </tr>
             </thead>
             <tbody>
+
                 <?php
+
                 $no = 1;
                 while ($row = mysqli_fetch_assoc($result_sudah)) :
-                ?>
+                    $rowss = mysqli_fetch_assoc($result_nilai); ?>
                     <tr>
                         <th scope="row"><?php echo $no++; ?></th>
                         <td><?php echo $row['Nama']; ?></td>
@@ -78,11 +83,12 @@ include('./include/header.php');
                             <form method="post" action="editnilaiaksi.php">
                                 <input type="hidden" name="id_tugas" value="<?php echo $roww['id_tugas']; ?>">
                                 <input type="hidden" name="id_pengumpulan" value="<?php echo $row['id_pengumpulan']; ?>">
-                                <input type="number" name="nilai" class="form-control" min="0" max="100" value="<?php echo $row['nilai']; ?>">
+                                <input type="number" name="nilai" class="form-control" min="0" max="100">
                                 <button type="submit" class="btn btn-dark"><i class="fas fa-edit"></i> Simpan</button>
                             </form>
                         </td>
-                        <td><?php echo ($row['nilai'] !== null) ? 'Sudah Dinilai' : 'Belum Dinilai'; ?></td> <!-- Menampilkan hasil nilai -->
+
+                        <td><?php echo $rowss['nilai']; ?></td> <!-- Menampilkan hasil nilai -->
                     </tr>
                 <?php endwhile; ?>
 

@@ -142,6 +142,7 @@ $result = mysqli_query($koneksi, $query);
                                         <td><?php echo isset($data['title']) ? $data['title'] : ''; ?></td>
                                         <td><?php echo isset($data['materi']) ? $data['materi'] : ''; ?></td>
                                         <td>
+
                                             <a class="btn btn-primary btn-sm" href="download.php?materi=id<?php echo isset($data['materi']) ? $data['materi'] : ''; ?>">
                                                 <i class="fas fa-cloud-download-alt"></i> Download
                                             </a>
