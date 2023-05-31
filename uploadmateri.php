@@ -1,8 +1,6 @@
 <?php
 include('./include/header.php');
-?>
 
-<?php
 session_start();
 if (!isset($_SESSION["login"])) {
     header("Location: index.php");
@@ -37,7 +35,7 @@ $result = mysqli_query($koneksi, $query);
                             <h5 class="modal-title">Tambah Materi</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <form method="post" enctype="multipart/form-data" action="aksi_materi.php">
+                        <form method="post" action="aksi_materi.php" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label class="control-label">Nama Materi</label>
@@ -80,6 +78,7 @@ $result = mysqli_query($koneksi, $query);
                             <td><?php echo $data['title']; ?></td>
                             <td><a href="download.php?materi=<?php echo $data['materi']; ?>"><?php echo $data['materi']; ?></a></td>
                             <td class="d-flex justify-content-center">
+
                                 <a href="aksi_hapusmateri.php?id_materi=<?php echo $data['id_materi']; ?>" class="btn btn-danger mt-2" style="font-weight: 400;" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>

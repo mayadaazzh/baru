@@ -3,6 +3,8 @@
 include 'koneksi.php';
 
 if (isset($_GET['materi'])) {
+    $filename = $_GET['foto'];
+
     $back_dir = "materi/";
     $file = $back_dir . $_GET['materi'];
 
@@ -22,6 +24,6 @@ if (isset($_GET['materi'])) {
         exit;
     } else {
         $_SESSION['pesan'] = "Oops! File - $filename - not found ...";
-        header("location:materiwpw.php");
+        header("location:index.php");
     }
 }

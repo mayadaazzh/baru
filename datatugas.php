@@ -1,10 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION["login"])) {
-    header("Location: haldosen.php");
+    header("Location: index.php");
     exit;
 }
-
 include 'koneksi.php';
 
 $id_tugas = $_GET['id_tugas'];
@@ -12,15 +11,13 @@ $query = "SELECT * FROM tugas WHERE id_tugas = '$id_tugas'";
 $result = mysqli_query($koneksi, $query);
 $roww = mysqli_fetch_assoc($result);
 
-
-
 $query_sudah = "SELECT m.id_mahasiswa, m.Nama, p.file, n.nilai, p.id_pengumpulan
                 FROM mahasiswa m
                 LEFT JOIN pengumpulan p ON m.id_mahasiswa = p.id_mahasiswa AND p.id_tugas = '$id_tugas'
                 LEFT JOIN nilai n ON p.id_pengumpulan = n.id_pengumpulan
                 WHERE p.id_tugas = '$id_tugas'";
 
-$query_nilai = "SELECT * FROM pengumpulan";
+$query_nilai = "SELECT nilai FROM pengumpulan WHERE id_tugas = '$id_tugas'";
 $result_nilai = mysqli_query($koneksi, $query_nilai);
 
 $result_sudah = mysqli_query($koneksi, $query_sudah);
@@ -78,7 +75,8 @@ include('./include/header.php');
                     <tr>
                         <th scope="row"><?php echo $no++; ?></th>
                         <td><?php echo $row['Nama']; ?></td>
-                        <td><?php echo $row['file']; ?></td>
+                        <td><a href="downloadTugasMahasiswa.php?file=<?php echo $row['file']; ?>"><?php echo $row['file']; ?></a></td>
+
                         <td>
                             <form method="post" action="editnilaiaksi.php">
                                 <input type="hidden" name="id_tugas" value="<?php echo $roww['id_tugas']; ?>">

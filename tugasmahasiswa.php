@@ -1,21 +1,24 @@
 <?php
 session_start();
-
 if (!isset($_SESSION["login"])) {
-    header("Location: loginmahasiswa.php");
+    header("Location: index.php");
     exit;
 }
 
 include 'koneksi.php';
 
-
 $id_mahasiswa = $_GET['id_mahasiswa'];
-$query2 = "SELECT id_pengumpulan FROM pengumpulan WHERE id_mahasiswa='$id_mahasiswa'";
-$result2 = mysqli_query($koneksi, $query2);
-
 
 $query = "SELECT * FROM dosen";
 $result = mysqli_query($koneksi, $query);
+
+$uu = "SELECT * FROM pengumpulan WHERE id_mahasiswa = '$id_mahasiswa'";
+$ii = mysqli_query($koneksi, $uu);
+
+// $quer = "SELECT * FROM mahasiswa";
+// $resul = mysqli_query($koneksi, $quer);
+// $data0 = mysqli_fetch_assoc($resul);
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +28,7 @@ $result = mysqli_query($koneksi, $query);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasbor Mahasiswa</title>
+    <title>Dasbor mahasiswa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -96,7 +99,7 @@ $result = mysqli_query($koneksi, $query);
                 <a class="nav-link active text-white" href="halmahasiswa.php"><i class="fas fa-user"></i> Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="uploadmateri.php"><i class="fas fa-book"></i> Materi Kuliah</a>
+                <a class="nav-link active text-white" href="materimahasiswa.php"><i class="fas fa-book"></i> Materi Kuliah</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>
@@ -111,7 +114,7 @@ $result = mysqli_query($koneksi, $query);
         <div class="container">
             <div class="row">
                 <?php while ($data = mysqli_fetch_assoc($result)) {
-                    $data2 = mysqli_fetch_assoc($result2) ?>
+                    $data2 = mysqli_fetch_assoc($ii) ?>
                     <div class="col-md-6">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -119,7 +122,8 @@ $result = mysqli_query($koneksi, $query);
                             </div>
                             <div class="card-body">
                                 <p>Dosen Pengampu: <?php echo $data['nama']; ?></p>
-                                <a href="isitugas.php?id_pengumpulan=<?php echo $data2['id_pengumpulan']; ?>" class="btn btn-dark"><i class="fas fa-eye"></i> Lihat Tugas</a>
+                                <a href="isitugas.php?id_dosen=<?php echo $data['id_dosen']; ?>&id_mahasiswa=<?php echo $data2['id_mahasiswa']; ?>" class="btn btn-dark"><i class="fas fa-eye"></i> Lihat Tugas</a>
+
                             </div>
                         </div>
                     </div>

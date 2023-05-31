@@ -28,8 +28,10 @@ if (isset($_POST['login'])) {
                 setcookie('login', 'true', time() + 60);
             }
 
-            header("Location: halmahasiswa.php");
-            exit;
+
+            $id_mahasiswa = $cekPw['id_mahasiswa'];
+
+            header("Location: halmahasiswa.php?id_mahasiswa=" . $id_mahasiswa);
         }
         $error = true;
     }
@@ -56,9 +58,9 @@ if (isset($_POST['login'])) {
                     <div class="card-header text-light text-center">
                         <img src="logoweb.png" width="160" height="45">
                     </div>
-                    
+
                     <div class="card-body">
-                    <?php
+                        <?php
                         if (isset($error)) {
                             echo "<div class='alert alert-danger' role='alert'>Password wrong, please try again!</div>";
                         }
@@ -79,7 +81,7 @@ if (isset($_POST['login'])) {
                                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
                                 <label class="form-check-label" for="remember">Always remember</label>
                             </div>
-                            <button style="width: 100%;" class="btn btn-dark" type="submit" name="login" href="halmahasiswa.php?id_mahasiswa=<?php echo $cekPw['id_mahasiswa'];?>">LOGIN</button>
+                            <button style="width: 100%;" class="btn btn-dark" type="submit" name="login" href="halmahasiswa.php?id_mahasiswa=<?php echo $cekPw['id_mahasiswa']; ?>">LOGIN</button>
                         </form>
                         <hr>
                         <p class="text-center">Belum punya akun? <a href="regis.php">Daftar</a></p>

@@ -20,11 +20,9 @@ include 'koneksi.php';
 //
 
 $no = 1;
-$id_dosen = $_GET['id_dosen'];
 include 'koneksi.php';
-$query = "SELECT * FROM materi WHERE id_dosen = '$id_dosen'";
+$query = "SELECT * FROM materi";
 $result = mysqli_query($koneksi, $query);
-
 
 ?>
 
@@ -134,26 +132,16 @@ $result = mysqli_query($koneksi, $query);
                         <tbody>
                             <?php
                             $no = 1;
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                while ($data = mysqli_fetch_assoc($result)) {
+                            while ($data = mysqli_fetch_assoc($result)) {
                             ?>
-                                    <tr>
-                                        <td><?php echo $no++; ?></td>
-                                        <td><?php echo isset($data['title']) ? $data['title'] : ''; ?></td>
-                                        <td><?php echo isset($data['materi']) ? $data['materi'] : ''; ?></td>
-                                        <td>
-
-                                            <a class="btn btn-primary btn-sm" href="download.php?materi=id<?php echo isset($data['materi']) ? $data['materi'] : ''; ?>">
-                                                <i class="fas fa-cloud-download-alt"></i> Download
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php
-                                }
-                            } else {
-                                ?>
                                 <tr>
-                                    <td colspan="4">No data available</td>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo $data['title']; ?></td>
+                                    <td><?php echo $data['materi']; ?></td>
+                                    <td><a class="btn btn-primary btn-sm" href="download.php?materi=<?php echo $data['materi']; ?>"><i class="fa-solid fa-download" style="color: #ffffff;"></i> Download</a>
+                                        <i class="fas fa-cloud-download-alt"></i> Download
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php
                             }

@@ -1,17 +1,21 @@
 <?php
-session_start();
 
+session_start();
 if (!isset($_SESSION["login"])) {
-    header("Location: loginmahasiswa.php");
+    header("Location: index.php");
     exit;
 }
 
 include 'koneksi.php';
-$id_mahasiswa = $_SESSION["id_mahasiswa"]; // Ambil ID mahasiswa dari session
+$id_mahasiswa = $_GET["id_mahasiswa"]; // Ambil ID mahasiswa dari session
 
 $query = "SELECT * FROM mahasiswa WHERE id_mahasiswa = '$id_mahasiswa'";
 $result = mysqli_query($koneksi, $query);
 $data = mysqli_fetch_assoc($result); // Ambil data mahasiswa
+
+$query2 = "SELECT * FROM pengumpulan";
+$result2 = mysqli_query($koneksi, $query2);
+$data2 = mysqli_fetch_assoc($result2)
 
 ?>
 
@@ -99,7 +103,7 @@ $data = mysqli_fetch_assoc($result); // Ambil data mahasiswa
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="tugasmahasiswa.php"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
+                <a class="nav-link active text-white" href="tugasmahasiswa.php?id_mahasiswa=<?php echo $data2['id_mahasiswa']; ?>"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
             </li>
         </ul>
     </div>

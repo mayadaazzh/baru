@@ -9,5 +9,5 @@ session_destroy();
 // setcoockie saat logout
 setcookie('login', '', time() - 3600);
 
-header("Location: login.php");
+header("Location: index.php");
 exit;

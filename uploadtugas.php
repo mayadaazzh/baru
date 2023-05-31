@@ -80,7 +80,6 @@ $result = mysqli_query($koneksi, $query);
                         <th>Judul</th>
                         <th>Deskripsi</th>
                         <th>Deadline</th>
-                        <th>File</th>
                         <th>Action</th>
                     </tr>
 
@@ -91,7 +90,6 @@ $result = mysqli_query($koneksi, $query);
                             <td><a href="datatugas.php?id_tugas=<?php echo $data['id_tugas']; ?>"><?php echo $data['judul']; ?></a></td>
                             <td><?php echo $data['deskripsi']; ?></td>
                             <td><?php echo $data['deadline']; ?></td>
-                            <td><a href="download.php?id_tugas=<?php echo $data['file']; ?>"><?php echo $data['file']; ?></a></td>
                             <td class="d-flex justify-content-center">
                                 <a href="aksi_hapustugas.php?id_tugas=<?php echo $data['id_tugas']; ?>" class="btn btn-danger mt-2" style="font-weight: 400;" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
                                     <i class="fas fa-trash-alt"></i>

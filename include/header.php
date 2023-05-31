@@ -1,4 +1,12 @@
+<?php
 
+include 'koneksi.php';
+
+$query = "SELECT * FROM dosen";
+$result = mysqli_query($koneksi, $query);
+$data0 = mysqli_fetch_assoc($result);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +83,7 @@
     <div class="dashboard">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active text-white" href="haldosen.php"><i class="fas fa-user"></i> Profile</a>
+                <a class="nav-link active text-white" href="haldosen.php?id_dosen=<?php echo $data0['id_dosen'] ?>"><i class="fas fa-user"></i> Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active text-white" href="uploadmateri.php"><i class="fas fa-book"></i> Materi Kuliah</a>

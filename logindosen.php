@@ -1,16 +1,13 @@
 <?php
+
 session_start();
+
 include 'koneksi.php';
 
 // cek cookie
 if (isset($_COOKIE['login']) && $_COOKIE['login'] == 'true') {
     $_SESSION['login'] = true;
 }
-
-// if (isset($_SESSION["login"])) {
-//     header("Location: haldosen.php");
-//     exit;
-// }
 
 if (isset($_POST['login'])) {
     global $koneksi;
@@ -39,6 +36,8 @@ if (isset($_POST['login'])) {
         $error = true;
     }
 }
+
+
 
 ?>
 
