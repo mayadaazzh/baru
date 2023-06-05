@@ -86,7 +86,7 @@ $data0 = mysqli_fetch_assoc($result);
                 <a class="nav-link active text-white" href="haldosen.php?id_dosen=<?php echo $data0['id_dosen'] ?>"><i class="fas fa-user"></i> Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="uploadmateri.php"><i class="fas fa-book"></i> Materi Kuliah</a>
+                <a class="nav-link active text-white" href="uploadmateri.php?id_dosen=<?php echo $data0['id_dosen'] ?>"><i class="fas fa-book"></i> Materi Kuliah</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>

@@ -132,11 +132,11 @@ $result2 = mysqli_query($koneksi, $query2);
                                     <p class="card-text">Deadline: <?php echo $data['deadline']; ?></p>
                                     <?php if ($pengumpulan_data) { ?>
                                         <p style="color: green;">Sudah mengumpulkan pada: <?php echo $pengumpulan_data['waktu']; ?></p>
+                                        <p class="card-text">Nilai: <?php echo $pengumpulan_data['nilai']; ?></p>
                                         <p>File yang diunggah: <?php echo $pengumpulan_data['file']; ?></p>
                                     <?php } else { ?>
                                         <p style="color: red;">Belum Mengumpulkan</p>
                                     <?php } ?>
-                                    <p class="card-text">Nilai: <?php echo $data2['nilai']; ?></p>
 
                                     <form method="post" action="submittugasmahasiswa.php" enctype="multipart/form-data">
                                         <input type="hidden" name="id_tugas" value="<?php echo $data['id_tugas']; ?>">

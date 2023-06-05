@@ -20,8 +20,9 @@ include 'koneksi.php';
 //
 
 $no = 1;
+$id_dosen = $_GET['id_dosen'];
 include 'koneksi.php';
-$query = "SELECT * FROM materi";
+$query = "SELECT * FROM materi WHERE id_dosen='$id_dosen'";
 $result = mysqli_query($koneksi, $query);
 
 ?>

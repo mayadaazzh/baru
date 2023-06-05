@@ -15,7 +15,12 @@ if (in_array($ext, $ekstensi)) {
     $xx = $rand . '_' . $filename;
     move_uploaded_file($_FILES['materi']['tmp_name'], 'materi/' . $rand . '_' . $filename);
     mysqli_query($koneksi, "insert into materi values('','$id_dosen','$title','$xx')");
-    echo '<script>alert("Materi Berhasil Ditambahkan!"); window.location.href = "uploadmateri.php";</script>';
+
+    // Redirect to uploadmateri.php with the id_dosen parameter in the URL and display the alert
+    echo '<script>alert("Materi berhasil ditambahkan!"); window.location.href = "uploadmateri.php?id_dosen=' . $id_dosen . '";</script>';
+    exit;
 } else {
-    echo '<script>alert("gagal!"); window.location.href = "uploadmateri.php";</script>';
+    // Redirect to uploadmateri.php with the id_dosen parameter in the URL and display the alert
+    echo '<script>alert("Gagal mengunggah materi!"); window.location.href = "uploadmateri.php?id_dosen=' . $id_dosen . '";</script>';
+    exit;
 }

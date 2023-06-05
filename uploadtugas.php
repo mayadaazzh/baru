@@ -10,8 +10,10 @@ if (!isset($_SESSION["login"])) {
 }
 
 include 'koneksi.php';
+
 $no = 1;
-$query = "SELECT * FROM tugas";
+$id_dosen = $_GET['id_dosen'];
+$query = "SELECT * FROM tugas WHERE id_dosen='$id_dosen'";
 $result = mysqli_query($koneksi, $query);
 ?>
 
@@ -41,14 +43,13 @@ $result = mysqli_query($koneksi, $query);
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label class="control-label">Judul Tugas</label>
-                                    <input type="hidden" name="id_dosen" class="form-control">
                                     <?php
                                     include 'koneksi.php';
-                                    $query2 = "SELECT * FROM dosen";
+                                    $query2 = "SELECT * FROM dosen WHERE id_dosen='$id_dosen'";
                                     $result2 = mysqli_query($koneksi, $query2);
                                     $data2 = mysqli_fetch_assoc($result2);
                                     ?>
-                                    <input type="hidden" name="id_dosen" value="<?php echo $data2['id_dosen']; ?>" class="form-control">
+                                    <input type="hidden" name="id_dosen" value="<?php echo $data2['id_dosen'] ?>" class="form-control">
                                     <input type="text" name="judul" class="form-control">
                                 </div>
                                 <div class="form-group">
