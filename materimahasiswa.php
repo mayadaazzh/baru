@@ -8,8 +8,14 @@ if (!isset($_SESSION["login"])) {
 
 include 'koneksi.php';
 
-$query = "SELECT * FROM dosen";
-$result = mysqli_query($koneksi, $query);
+$id_mahasiswa = $_GET['id_mahasiswa'];
+
+$query = "SELECT * FROM mahasiswa WHERE id_mahasiswa = '$id_mahasiswa'";
+$result0 = mysqli_query($koneksi, $query);
+$data = mysqli_fetch_assoc($result0); // Ambil data mahasiswa
+
+$query3 = "SELECT * FROM dosen";
+$result = mysqli_query($koneksi, $query3);
 
 $query2 = "SELECT * FROM pengumpulan";
 $result2 = mysqli_query($koneksi, $query2);
@@ -92,10 +98,10 @@ $data2 = mysqli_fetch_assoc($result2)
     <div class="dashboard">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active text-white" href="halmahasiswa.php"><i class="fas fa-user"></i> Profile</a>
+                <a class="nav-link active text-white" href="halmahasiswa.php?id_mahasiswa=<?php echo $data['id_mahasiswa'] ?>"><i class="fas fa-user"></i> Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="materimahasiswa.php"><i class="fas fa-book"></i> Materi Kuliah</a>
+                <a class="nav-link active text-white" href="materimahasiswa.php?id_mahasiswa=<?php echo $data['id_mahasiswa'] ?>"><i class="fas fa-book"></i> Materi Kuliah</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>

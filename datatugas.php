@@ -7,6 +7,15 @@ if (!isset($_SESSION["login"])) {
 include 'koneksi.php';
 
 $id_tugas = $_GET['id_tugas'];
+$id_dosen = $_GET['id_dosen'];
+
+$query11 = "SELECT * FROM dosen WHERE id_dosen = '$id_dosen'";
+$result11 = mysqli_query($koneksi, $query11);
+$data00 = mysqli_fetch_assoc($result11); // Ambil data mahasiswa
+
+$query22 = "SELECT * FROM dosen WHERE id_dosen = '$id_dosen'";
+$result22 = mysqli_query($koneksi, $query22);
+
 $query = "SELECT * FROM tugas WHERE id_tugas = '$id_tugas'";
 $result = mysqli_query($koneksi, $query);
 $roww = mysqli_fetch_assoc($result);
@@ -52,7 +61,7 @@ include('./include/header.php');
 <body>
 
     <div class="content">
-        <a href="uploadtugas.php" class="btn btn-dark">Back</a>
+        <a href="uploadtugas.php?id_dosen=<?php echo $data00['id_dosen'] ?>" class="btn btn-dark">Back</a>
 
         <h4>Mahasiswa yang Sudah Mengumpulkan Tugas</h4>
         <table class="table table-bordered mt-3">
@@ -71,7 +80,9 @@ include('./include/header.php');
 
                 $no = 1;
                 while ($row = mysqli_fetch_assoc($result_sudah)) :
-                    $rowss = mysqli_fetch_assoc($result_nilai); ?>
+                    $rowss = mysqli_fetch_assoc($result_nilai);
+                    $data11 = mysqli_fetch_assoc($result22); // Ambil data mahasiswa
+                ?>
                     <tr>
                         <th scope="row"><?php echo $no++; ?></th>
                         <td><?php echo $row['Nama']; ?></td>
@@ -79,8 +90,9 @@ include('./include/header.php');
 
                         <td>
                             <form method="post" action="editnilaiaksi.php">
-                                <input type="hidden" name="id_tugas" value="<?php echo $roww['id_tugas']; ?>">
+                                <input type="hidden" name="id_dosen" value="<?php echo $data11['id_dosen']; ?>">
                                 <input type="hidden" name="id_pengumpulan" value="<?php echo $row['id_pengumpulan']; ?>">
+                                <input type="hidden" name="id_tugas" value="<?php echo $roww['id_tugas']; ?>">
                                 <input type="number" name="nilai" class="form-control" min="0" max="100">
                                 <button type="submit" class="btn btn-dark"><i class="fas fa-edit"></i> Simpan</button>
                             </form>

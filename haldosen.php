@@ -97,7 +97,7 @@ $data = mysqli_fetch_assoc($result); // Inisialisasi $data
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="uploadtugas.php"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
+                <a class="nav-link active text-white" href="uploadtugas.php?id_dosen=<?php echo $data['id_dosen'] ?>"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
             </li>
 
         </ul>
