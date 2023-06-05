@@ -1,51 +1,99 @@
-<?php
-include 'koneksi.php';
-
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>halaman awal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <title>Portal E-Learning - Politeknik Elektronika Negeri Surabaya</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background-color: #333333;
+      color: #fff;
+    }
+
+    .container {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .card {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .card-text {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #FF8C00;
+      border: none;
+    }
+
+    .btn:hover {
+      background-color: #FFA500;
+    }
+
+    .portal-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 50px;
+    }
+
+    .card-icon {
+      font-size: 48px;
+      color: #FF8C00;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <h1 class="portal-title">Portal E-learning Politeknik Elektronika Negeri Surabaya</h1>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Login
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="loginmahasiswa.php">Mahasiswa</a></li>
-                            <li><a class="dropdown-item" href="logindosen.php">Dosen</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="fas fa-user-graduate card-icon"></i>
+            <h5 class="card-title">Admin</h5>
+            <p class="card-text">Login sebagai admin</p>
+            <a href="login.html" class="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></a>
+          </div>
         </div>
-    </nav>
-
-    <div class="container-fluid">
-
-        <h1>selamat datang di kamposs</h1>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="fas fa-chalkboard-teacher card-icon"></i>
+            <h5 class="card-title">Dosen</h5>
+            <p class="card-text">Login sebagai dosen</p>
+            <a href="logindosen.php" class="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="fas fa-user-graduate card-icon"></i>
+            <h5 class="card-title">Mahasiswa</h5>
+            <p class="card-text">Login sebagai mahasiswa</p>
+            <a href="logindosen.php" class="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="https://kit.fontawesome.com/90add86f1d.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
-
 
 </html>

@@ -173,7 +173,7 @@ $data0 = mysqli_fetch_assoc($result0);
                                 <td><a href="download.php?materi=<?php echo $data['materi']; ?>"><?php echo $data['materi']; ?></a></td>
                                 <td class="d-flex justify-content-center">
 
-                                    <a href="aksi_hapusmateri.php?id_materi=<?php echo $data['id_materi']; ?>" class="btn btn-danger mt-2" style="font-weight: 400;" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
+                                    <a href="aksi_hapusmateri.php?id_materi=<?php echo $data['id_materi']; ?>&id_dosen=<?php echo $data['id_dosen']; ?>" class="btn btn-danger mt-2" style="font-weight: 400;" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>

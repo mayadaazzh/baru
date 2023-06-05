@@ -140,7 +140,7 @@ $result = mysqli_query($koneksi, $query);
                                     <td><?php echo $data['title']; ?></td>
                                     <td><?php echo $data['materi']; ?></td>
                                     <td><a class="btn btn-primary btn-sm" href="download.php?materi=<?php echo $data['materi']; ?>"><i class="fa-solid fa-download" style="color: #ffffff;"></i> Download</a>
-                                        <i class="fas fa-cloud-download-alt"></i> Download
+                                        </i>
                                         </a>
                                     </td>
                                 </tr>

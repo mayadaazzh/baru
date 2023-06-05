@@ -103,7 +103,7 @@ $data2 = mysqli_fetch_assoc($result2)
                 <a class="nav-link active text-white" href="jadwalmahasiswa.php"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active text-white" href="tugasmahasiswa.php?id_mahasiswa=<?php echo $data2['id_mahasiswa']; ?>"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
+                <a class="nav-link active text-white" href="tugasmahasiswa.php?id_mahasiswa=<?php echo $data['id_mahasiswa']; ?>"><i class="fas fa-clipboard"></i> Tugas Kuliah</a>
             </li>
         </ul>
     </div>
