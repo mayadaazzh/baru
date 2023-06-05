@@ -189,7 +189,7 @@ $data0 = mysqli_fetch_assoc($result2);
                                 <td><?php echo $data['deskripsi']; ?></td>
                                 <td><?php echo $data['deadline']; ?></td>
                                 <td class="d-flex justify-content-center">
-                                    <a href="aksi_hapustugas.php?id_tugas=<?php echo $data['id_tugas']; ?>" class="btn btn-danger mt-2" style="font-weight: 400;" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
+                                    <a href="aksi_hapustugas.php?id_tugas=<?php echo $data['id_tugas']; ?>&id_dosen=<?php echo $data['id_dosen']; ?>" class="btn btn-danger mt-2" style="font-weight: 400;" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>

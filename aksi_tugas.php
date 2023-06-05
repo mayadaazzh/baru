@@ -14,7 +14,7 @@ $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
 if (in_array($ext, $ekstensi)) {
     $xx = $rand . '_' . $filename;
-    move_uploaded_file($_FILES['file']['tmp_name'], 'tugas/' . $rand . '_' . $filename);
+    move_uploaded_file($_FILES['file']['tmp_name'], 'fileTugas/' . $rand . '_' . $filename);
     $deadline = $_POST['deadline'];
     $query = "INSERT INTO tugas (id_dosen, judul, deskripsi, deadline, file) VALUES ('$id_dosen', '$judul', '$deskripsi', '$deadline', '$xx')";
     if (mysqli_query($koneksi, $query)) {
